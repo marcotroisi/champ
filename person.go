@@ -12,23 +12,31 @@ type PeopleInterface interface {
 	List() []Person
 }
 
+type PersonConfig struct {
+	Id                         int
+	FirstName, LastName, Email string
+}
+
+func NewPerson(config PersonConfig) *Person {
+	return &Person{PersonConfig: config}
+}
+
 type Person struct {
-	id                         int
-	firstName, lastName, email string
+	PersonConfig
 }
 
 func (p *Person) Id() int {
-	return p.id
+	return p.PersonConfig.Id
 }
 
 func (p *Person) FirstName() string {
-	return p.firstName
+	return p.PersonConfig.FirstName
 }
 
 func (p *Person) LastName() string {
-	return p.lastName
+	return p.PersonConfig.LastName
 }
 
 func (p *Person) Email() string {
-	return p.email
+	return p.PersonConfig.Email
 }
